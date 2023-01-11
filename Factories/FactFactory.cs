@@ -8,7 +8,9 @@ public class FactFactory
     {
         return (name.Contains('=')) ? 
             throw new ArgumentException("A Fact name cannot contain the \"=\" sign ") : 
-            new Fact(name, value);
+            new Fact(
+                value ? name : name[1..], // We skip the first element of the Name ('!') if the fact value is false
+                value);
     }
     public static Fact MakeFact(string factFormat)
     {

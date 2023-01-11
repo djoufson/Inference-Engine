@@ -19,9 +19,7 @@ public class Fact : IFact
     public override string ToString()
     {
         var sb = new StringBuilder();
-        if (!_value)
-            sb.Append('!');
-        sb.Append(_name);
+        sb.AppendFormat("{0} | {1}", _name, _value);
         return sb.ToString();
     }
 }

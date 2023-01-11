@@ -15,37 +15,10 @@ public class Engine
         _factsBase = factsBase;
         _rulesBase = rulesBase;
     }
-    private bool CanApply(Rule rule)
+    public void PrintFacts()
     {
-        var isProoven = true;
-        Utils.CheckNull(rule);
-        foreach (var premise in rule.Premises)
-        {
-            try
-            {
-                var fact = _factsBase.SearchFact(premise.GetName());
-                // If there is no error, that means the fact exists.
-                // Let's check if this fact is prooven or not
-                isProoven = isProoven && fact.GetValue();
-                if (!isProoven)
-                    break;
-            }
-            catch (Exception)
-            {
-                // The fact was not found in the factsList... 
-                // We are then sure tha the rule cannot be applied
-                return false;
-            }
-        }
-        return isProoven;
-    }
-    private Rule FindUsableRule(RulesBase rules)
-    {
-        foreach (Rule rule in rules.Rules.Cast<Rule>())
-            if (CanApply(rule))
-                return rule;
-
-        throw new Exception("There is no applyable rule");
+        foreach (var fact in _factsBase.Facts)
+            Console.WriteLine(fact);
     }
     public IEnumerable<IFact> Solve()
     {
@@ -80,5 +53,37 @@ public class Engine
             }
         }
         return _factsBase.Facts;
+    }
+    private bool CanApply(Rule rule)
+    {
+        var isProoven = true;
+        Utils.CheckNull(rule);
+        foreach (var premise in rule.Premises)
+        {
+            try
+            {
+                var fact = _factsBase.SearchFact(premise.GetName());
+                // If there is no error, that means the fact exists.
+                // Let's check if this fact is prooven or not
+                isProoven = isProoven && fact.GetValue();
+                if (!isProoven)
+                    break;
+            }
+            catch (Exception)
+            {
+                // The fact was not found in the factsList... 
+                // We are then sure tha the rule cannot be applied
+                return false;
+            }
+        }
+        return isProoven;
+    }
+    private Rule FindUsableRule(RulesBase rules)
+    {
+        foreach (Rule rule in rules.Rules.Cast<Rule>())
+            if (CanApply(rule))
+                return rule;
+
+        throw new Exception("There is no applyable rule");
     }
 }

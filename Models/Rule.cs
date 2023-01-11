@@ -8,7 +8,7 @@ public class Rule : IRule
     public List<IFact> Premises { get; set; }
     public IFact Conclusion { get; set; }
     public string Name { get; set; }
-    public Rule(string ruleName, IEnumerable<IFact> premises, IFact conclusion)
+    internal Rule(string ruleName, IEnumerable<IFact> premises, IFact conclusion)
     {
         Name = ruleName;
         Premises = premises.ToList();
