@@ -2,18 +2,19 @@
 using InferenceRuler.DB;
 using InferenceRuler.Models;
 using InferenceRuler.Utilities;
+using System.Text;
 
 namespace InferenceRuler;
 
 public class Engine
 {
-    private readonly FactsBase _factsBase;
-    private readonly RulesBase _rulesBase;
+    public readonly FactsBase _factsBase;
+    public readonly RulesBase _rulesBase;
 
     /// <summary>
     /// Instantiates a new Inference Engine with the given attributes
     /// </summary>
-    /// <param name="factsBase">The object that we will use to instantiate the facts base. It has to be not null</param>
+    /// <param name="factsBase">The object that we will use to instantiate the rules base. It has to be not null</param>
     /// <param name="rulesBase">The object that we will use to instantiate the rules base. It has to be not null</param>
     public Engine(FactsBase factsBase, RulesBase rulesBase)
     {
@@ -22,9 +23,9 @@ public class Engine
     }
 
     /// <summary>
-    /// Gets the list of initially known facts and infered facts
+    /// Gets the list of initially known rules and infered rules
     /// </summary>
-    /// <returns>A list of facts</returns>
+    /// <returns>A list of rules</returns>
     public List<Fact> GetFacts()
     { 
         var facts = new List<Fact>();
@@ -37,13 +38,28 @@ public class Engine
         return facts;
     }
 
-    /// <summary>
-    /// Prints the facts to the console
-    /// </summary>
-    public void PrintFacts()
+    public List<Rule> GetRules()
     {
+        var rules = new List<Rule>();
+        foreach (var rule in _rulesBase.Rules)
+        {
+            var r = rule as Rule;
+            if (r is not null)
+                rules.Add(r);
+        }
+        return rules;
+    }
+
+    /// <summary>
+    /// Prints the rules to the console
+    /// </summary>
+    public string PrintFacts()
+    {
+        var sb = new StringBuilder();
         foreach (var fact in _factsBase.Facts)
-            Console.WriteLine(fact);
+            sb.AppendLine(fact.ToString());
+
+        return sb.ToString();
     }
 
     /// <summary>
@@ -66,7 +82,7 @@ public class Engine
 
                 try
                 {
-                    // If there is no error, that means that the fact already exists
+                    // If there is no error, that means that the rule already exists
                     var _fact = _factsBase.SearchFact(rule.Conclusion.GetName());
                     continue;
                 }
@@ -90,31 +106,33 @@ public class Engine
     /// </summary>
     /// <param name="rule"></param>
     /// <returns>true if the rule can be applied, false if not</returns>
-    private bool CanApply(Rule rule)
+    public bool CanApply(Rule rule)
     {
         var isProoven = true;
         Utils.CheckNull(rule);
-        foreach (var premise in rule.Premises)
+        foreach (Fact premise in rule.Premises.Cast<Fact>())
         {
             try
             {
                 var fact = _factsBase.SearchFact(premise.GetName());
-                // If there is no error, that means the fact exists.
-                // Let's check if this fact is prooven or not
-                isProoven = isProoven && fact.GetValue();
+                // If there is no error, that means the rule exists.
+                // Let's check if this rule is prooven or not
+                var value1 = premise.GetValue();
+                var value2 = fact.GetValue();
+                isProoven = value1 == value2;
                 if (!isProoven)
                     break;
             }
             catch (Exception)
             {
-                // The fact was not found in the factsList... 
+                // The rule was not found in the factsList... 
                 // We are then sure tha the rule cannot be applied
                 return false;
             }
         }
         return isProoven;
     }
-    private Rule FindUsableRule(RulesBase rules)
+    public Rule FindUsableRule(RulesBase rules)
     {
         foreach (Rule rule in rules.Rules.Cast<Rule>())
             if (CanApply(rule))

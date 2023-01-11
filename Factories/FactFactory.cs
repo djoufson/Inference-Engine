@@ -19,7 +19,7 @@ public class FactFactory
         return (name.ContainsAny(Constants.SPECIAL_CHARACTERS.ToCharArray())) ? 
             throw new ArgumentException("A Fact name should not contain any special character like \n" + String.Join(' ', Constants.SPECIAL_CHARACTERS.ToCharArray())) : 
             new Fact(
-                value ? name : name[1..], // We skip the first element of the Name ('!') if the fact value is false
+                name,
                 value);
     }
 

@@ -73,7 +73,9 @@ public class RuleFactory
         foreach (Match premiseMatch in premisesMatches.Cast<Match>())
         {
             var name = premiseMatch.Groups[1].Value.Trim();
-            facts.Add(FactFactory.MakeFact(name, !conclusionName.Contains('!')));
+            var value = !conclusionName.Contains('!');
+            name = value ? name : name[1..];  // We skip the first element of the Name ('!') if the fact value is false
+            facts.Add(FactFactory.MakeFact(name, value));
         }
 
         // RETURN THE NEW RULE MADE WITH THE RETRIEVED ELEMENTS
