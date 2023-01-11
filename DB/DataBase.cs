@@ -29,7 +29,7 @@ public abstract class DataBase <T> where T : IData
     }
     protected T SearchData(string dataName)
     {
-        var data = _datas.FirstOrDefault(x => x.GetName() == dataName);
+        var data = _datas.First(d => d.GetName() == dataName);
         return data;
     }
     protected abstract bool GetValueOfData(string dataName);

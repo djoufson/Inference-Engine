@@ -1,4 +1,5 @@
-﻿using InferenceRuler.DB;
+﻿using InferenceRuler.Abstractions;
+using InferenceRuler.DB;
 using InferenceRuler.Models;
 using InferenceRuler.Utilities;
 
@@ -44,16 +45,40 @@ public class Engine
             if (CanApply(rule))
                 return rule;
 
-        throw new Exception("There is no more applyable rule");
+        throw new Exception("There is no applyable rule");
     }
-    public void Solve()
+    public IEnumerable<IFact> Solve()
     {
         var moreRules = true;
         var usableRules = new RulesBase();
         usableRules.AppendRules(_rulesBase.Rules);
         while (moreRules)
         {
+            // We try to find some applyable Rule
+            try
+            {
+                var rule = FindUsableRule(usableRules);
+                // No error occurs, we can continue
+                usableRules.Rules.Remove(rule);
 
+                try
+                {
+                    // If there is no error, that means that the fact already exists
+                    var _fact = _factsBase.SearchFact(rule.Conclusion.GetName());
+                    continue;
+                }
+                catch (Exception)
+                {
+                    // The inferred rule does not exixt in the rulesBase
+                    _factsBase.AddFact(rule.Conclusion);
+                }
+            }
+            catch (Exception)
+            {
+                // We didn't find any applyable rule
+                break;
+            }
         }
+        return _factsBase.Facts;
     }
 }

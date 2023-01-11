@@ -17,7 +17,7 @@ public class Rule : IRule
     public override string ToString()
     {
         var sb = new StringBuilder();
-        sb.AppendFormat("{0} IF: (", Name)
+        sb.AppendFormat("{0} ===> IF: (", Name)
             .AppendJoin(" AND ", Premises)
             .AppendFormat(") THEN {0}", Conclusion);
 
