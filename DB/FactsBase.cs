@@ -3,37 +3,26 @@ using InferenceRuler.Utilities;
 
 namespace InferenceRuler.DB;
 
-public class FactsBase
+public class FactsBase : DataBase<IFact>
 {
-    private List<IFact> _facts;
-    public List<IFact> Facts => _facts;
-
-    // CONSTRUCTOR
-    public FactsBase()
-    {
-        _facts = new List<IFact>();
-    }
-    public FactsBase Clear()
-    {
-        _facts.Clear();
-        return this;
-    }
+    public List<IFact> Facts => Datas;
+    public void ClearFacts() => Clear();
+    public IFact SearchFact(string factName) => SearchData(factName);
+    public bool GetValueOfFact(string factName) => GetValueOfData(factName);
     public FactsBase AddFact(IFact newFact)
     {
-        Utils.CheckNull(newFact);
-        _facts.Add(newFact);
+        AddData(newFact);
         return this;
     }
     public FactsBase AppendFacts(IEnumerable<IFact> newFacts)
     {
-        Utils.CheckNull(newFacts);
-        _facts.AddRange(newFacts);
+        AppendDatas(newFacts);
         return this;
     }
-    public IFact SearchFact(string factName)
+    protected override bool GetValueOfData(string dataName)
     {
-        var fact = _facts.FirstOrDefault(x => x.GetName() == factName);
-        Utils.CheckNull(fact);
-        return fact; // Do not care about this warning, because the fact object is already checked through the Utils.CheckNull() method
+        var fact = SearchFact(dataName);
+        Utils.CheckNull(fact, dataName);
+        return fact.GetValue();
     }
 }

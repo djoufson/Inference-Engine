@@ -1,8 +1,7 @@
 ﻿namespace InferenceRuler.Abstractions;
 
-public interface IFact
+public interface IFact : IData
 {
-    string GetName();
     bool GetValue();
     int GetLevel();
     void SetLevel(int level);
