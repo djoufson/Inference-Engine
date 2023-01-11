@@ -7,6 +7,11 @@ public sealed class FactsBase : DataBase<IFact>
 {
     public List<IFact> Facts => Datas;
 
+    public FactsBase(IEnumerable<IFact> facts)
+    {
+        foreach (var fact in facts)
+            Facts.Add(fact);
+    }
     /// <summary>
     /// Clears the facts of the facts Base
     /// </summary>
@@ -47,7 +52,7 @@ public sealed class FactsBase : DataBase<IFact>
     /// <returns>The instance of the current caller object as a Fluent API</returns>
     public FactsBase AddRangeFacts(IEnumerable<IFact> newFacts)
     {
-        AppendDatas(newFacts);
+        AddRangeDatas(newFacts);
         return this;
     }
     protected override bool GetValueOfData(string dataName)

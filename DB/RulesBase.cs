@@ -29,7 +29,7 @@ public sealed class RulesBase : DataBase<IRule>
     /// <returns>The instance of the current caller object as a Fluent API</returns>
     public RulesBase AddRangeRules(IEnumerable<IRule> newRules)
     {
-        AppendDatas(newRules);
+        AddRangeDatas(newRules);
         return this;
     }
     protected override bool GetValueOfData(string dataName)

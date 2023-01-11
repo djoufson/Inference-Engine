@@ -22,7 +22,7 @@ public abstract class DataBase <T> where T : IData
         Utils.CheckNull(newData, "The datas to append | Database.cs, line 22");
         _datas.Add(newData);
     }
-    protected void AppendDatas(IEnumerable<T> newDatas)
+    protected void AddRangeDatas(IEnumerable<T> newDatas)
     {
         Utils.CheckNull(newDatas, "The datas to append | Database.cs, line 27");
         _datas.AddRange(newDatas);
