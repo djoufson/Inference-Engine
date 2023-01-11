@@ -24,8 +24,5 @@ public class Rule : IRule
         return sb.ToString();
     }
 
-    public string GetName()
-    {
-        return Name;
-    }
+    public string GetName() => Name;
 }

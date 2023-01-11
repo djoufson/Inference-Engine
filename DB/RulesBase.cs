@@ -4,18 +4,30 @@ using InferenceRuler.Utilities;
 
 namespace InferenceRuler.DB;
 
-public class RulesBase : DataBase<IRule>
+public sealed class RulesBase : DataBase<IRule>
 {
     public List<IRule> Rules => Datas;
     public void ClearRules() => Clear();
     public IRule SearchRule(string ruleName) => SearchData(ruleName);
     public bool GetValueOfRule(string factName) => GetValueOfData(factName);
+
+    /// <summary>
+    /// Used to Add a single rule to the current rule Base
+    /// </summary>
+    /// <param name="newRule">The rule we want to add. It has to be not null</param>
+    /// <returns>The instance of the current caller object as a Fluent API</returns>
     public RulesBase AddRule(IRule newRule)
     {
         AddData(newRule);
         return this;
     }
-    public RulesBase AppendRules(IEnumerable<IRule> newRules)
+
+    /// <summary>
+    /// Used to Add a range of rules to the current rule Base
+    /// </summary>
+    /// <param name="newRules">An IEnumerable of IRule, that contains the collection of rules you want to add</param>
+    /// <returns>The instance of the current caller object as a Fluent API</returns>
+    public RulesBase AddRangeRules(IEnumerable<IRule> newRules)
     {
         AppendDatas(newRules);
         return this;
