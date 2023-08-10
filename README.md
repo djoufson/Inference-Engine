@@ -1,5 +1,5 @@
 # **Inference Engine ⚙️**
-This project is a C# clas Library made with .NET 6, that is for solving inferrence problems with an engine running the forward chaining algorithm.
+This project is a C# class Library made with .NET 6, that is for solving inferrence problems with an engine running the forward chaining algorithm.
 
 This is the documentation provided to use this package
 
