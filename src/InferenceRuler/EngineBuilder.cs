@@ -1,7 +1,7 @@
-﻿using InferenceRuler.DB;
-using InferenceRuler.Models;
+﻿using InferenceEngine.DB;
+using InferenceEngine.Models;
 
-namespace InferenceRuler;
+namespace InferenceEngine;
 
 public class EngineBuilder
 {

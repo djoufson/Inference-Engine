@@ -59,7 +59,7 @@ With this class, there are two static methods availables to make new facts
 Here are some examples of how to use the FacfFactory class
 
 ``` cSharp
-using static InferenceRuler.Factories.FactFactory;
+using static InferenceEngine.Factories.FactFactory;
 
 var myFirstFact = MakeFact("IsRed", true); // Explicit arguments
 var mySecondFact = MakeFact("IsJoker=false"); // Formated string
@@ -94,8 +94,8 @@ With this class, there are actually two ways of creating a rule, all of them thr
 ## Example
 We will continue the code written for the previous example
 ``` cSharp
-using static InferenceRuler.Factories.FactFactory;
-using static InferenceRuler.Factories.RuleFactory;
+using static InferenceEngine.Factories.FactFactory;
+using static InferenceEngine.Factories.RuleFactory;
 
 var myFirstFact = MakeFact("IsRed", true); // Explicit arguments
 var mySecondFact = MakeFact("IsJoker=true"); // Formated string
@@ -144,8 +144,8 @@ public Engine(FactsBase factsBase, RulesBase rulesBase)
 ## Example
 
 ``` cSharp
-using static InferenceRuler.Factories.FactFactory;
-using static InferenceRuler.Factories.RuleFactory;
+using static InferenceEngine.Factories.FactFactory;
+using static InferenceEngine.Factories.RuleFactory;
 
 var myFirstFact = MakeFact("IsRed", true); // Explicit arguments
 var mySecondFact = MakeFact("IsJoker=true"); // Formated string

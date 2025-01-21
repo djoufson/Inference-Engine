@@ -1,5 +1,5 @@
-﻿using InferenceRuler.Abstractions;
-using InferenceRuler.Models;
+﻿using InferenceEngine.Abstractions;
+using InferenceEngine.Models;
 using Rules_UI.Facts;
 
 namespace Rules_UI.Rules;

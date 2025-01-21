@@ -1,10 +1,10 @@
-﻿using InferenceRuler.Abstractions;
-using InferenceRuler.DB;
-using InferenceRuler.Models;
-using InferenceRuler.Utilities;
+﻿using InferenceEngine.Abstractions;
+using InferenceEngine.DB;
+using InferenceEngine.Models;
+using InferenceEngine.Utilities;
 using System.Text;
 
-namespace InferenceRuler;
+namespace InferenceEngine;
 
 public class Engine
 {
@@ -48,11 +48,11 @@ public class Engine
         do
         {
             Rule? rule = usableRules.FirstOrDefault(r => CanApply(r));
-            if(rule is null)
+            if (rule is null)
                 break;
 
             usableRules.Remove(rule);
-            if(!_factsBase.Exists(f => f.Name == rule.Conclusion.Name))
+            if (!_factsBase.Exists(f => f.Name == rule.Conclusion.Name))
                 _factsBase.Add(rule.Conclusion);
         } while (usableRules.Any());
         return _factsBase;

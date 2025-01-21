@@ -1,6 +1,6 @@
-﻿using InferenceRuler.Models;
+﻿using InferenceEngine.Models;
 
-namespace InferenceRuler.Abstractions;
+namespace InferenceEngine.Abstractions;
 
 public interface IFact
 {

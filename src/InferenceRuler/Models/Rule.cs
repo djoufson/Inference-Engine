@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using InferenceRuler.Abstractions;
+using InferenceEngine.Abstractions;
 
-namespace InferenceRuler.Models;
+namespace InferenceEngine.Models;
 
 public abstract class Rule
 {

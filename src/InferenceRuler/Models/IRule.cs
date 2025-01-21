@@ -1,6 +1,6 @@
-﻿using InferenceRuler.Abstractions;
+﻿using InferenceEngine.Abstractions;
 
-namespace InferenceRuler.Models
+namespace InferenceEngine.Models
 {
     public interface IRule
     {

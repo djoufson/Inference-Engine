@@ -1,4 +1,4 @@
-﻿using InferenceRuler.Models;
+﻿using InferenceEngine.Models;
 
 namespace Rules_UI.Facts;
 

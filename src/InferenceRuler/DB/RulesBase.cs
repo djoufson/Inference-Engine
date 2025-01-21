@@ -1,6 +1,6 @@
-﻿using InferenceRuler.Models;
+﻿using InferenceEngine.Models;
 
-namespace InferenceRuler.DB;
+namespace InferenceEngine.DB;
 
 public sealed class RulesBase : List<Rule>
 {

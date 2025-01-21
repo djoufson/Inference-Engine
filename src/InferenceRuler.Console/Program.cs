@@ -1,4 +1,4 @@
-﻿using InferenceRuler;
+﻿using InferenceEngine;
 using Rules_UI.Facts;
 using Rules_UI.Rules;
 

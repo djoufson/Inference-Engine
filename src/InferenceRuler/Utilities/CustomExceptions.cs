@@ -1,4 +1,4 @@
-﻿namespace InferenceRuler.Utilities.CustomExceptions;
+﻿namespace InferenceEngine.Utilities.CustomExceptions;
 
 public class RulePatternException : Exception
 {

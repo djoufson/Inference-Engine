@@ -1,9 +1,9 @@
-﻿using InferenceRuler.Models;
-using InferenceRuler.Utilities;
+﻿using InferenceEngine.Models;
+using InferenceEngine.Utilities;
 using System.Linq;
 using System.Reflection.Metadata;
 
-namespace InferenceRuler.Factories;
+namespace InferenceEngine.Factories;
 
 public class FactFactory
 {

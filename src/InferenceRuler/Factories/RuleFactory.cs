@@ -1,9 +1,9 @@
-﻿using InferenceRuler.Models;
-using InferenceRuler.Utilities;
-using InferenceRuler.Utilities.CustomExceptions;
+﻿using InferenceEngine.Models;
+using InferenceEngine.Utilities;
+using InferenceEngine.Utilities.CustomExceptions;
 using System.Text.RegularExpressions;
 
-namespace InferenceRuler.Factories;
+namespace InferenceEngine.Factories;
 
 public class RuleFactory
 {

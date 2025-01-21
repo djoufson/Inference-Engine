@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InferenceRuler.Utilities
+namespace InferenceEngine.Utilities
 {
     internal static class Utils
     {

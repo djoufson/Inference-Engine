@@ -1,6 +1,6 @@
-﻿using InferenceRuler.Abstractions;
+﻿using InferenceEngine.Abstractions;
 
-namespace InferenceRuler.DB;
+namespace InferenceEngine.DB;
 
 public sealed class FactsBase : List<IFact>
 {

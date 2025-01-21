@@ -1,4 +1,4 @@
-﻿namespace InferenceRuler.Utilities;
+﻿namespace InferenceEngine.Utilities;
 
 internal class Constants
 {

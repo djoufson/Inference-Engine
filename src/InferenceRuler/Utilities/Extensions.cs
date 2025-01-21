@@ -1,4 +1,4 @@
-﻿namespace InferenceRuler.Utilities;
+﻿namespace InferenceEngine.Utilities;
 
 internal static class Extensions
 {
@@ -8,7 +8,7 @@ internal static class Extensions
         foreach (char element in elements)
         {
             result = text.Contains(element);
-            if(result) return true;
+            if (result) return true;
         }
         return result;
     }

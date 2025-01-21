@@ -1,4 +1,4 @@
-﻿namespace TestInferenceRuler;
+﻿namespace TestInferenceEngine;
 
 public class FactoryTests
 {
