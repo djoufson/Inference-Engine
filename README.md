@@ -22,7 +22,7 @@ Once the project finishes to load, in the same terminal type the following comma
 ```
 
 - Open this path in your File Explorer
-- Enter inside the **bin/Debug/net6.0/** folder an copy the full path to this location
+- Enter inside the **bin/Debug/net9.0/** folder an copy the full path to this location
 
 ## **3.** **Add the project Reference**
 - Open your current project in Visual Studio
@@ -37,10 +37,10 @@ Here are the main classes of this package explained with encapsulated methods
 
 A fact is an entity described by two properties, that implements the `IFact` interface
 
-| Property    | Description |
-| -------- | ------- |
-| string **Name** { get; }  | The name of the fact    |
-| bool **Value** { get; } |  The boolean value of the fact     |
+| Property                 | Description                   |
+|--------------------------|-------------------------------|
+| string **Name** { get; } | The name of the fact          |
+| bool **Value** { get; }  | The boolean value of the fact |
 
 To make a new Fact, there is a factory class provided with serveral manners of making new facts
 
@@ -76,20 +76,20 @@ The list of facts to satisfy is called **Premises**, while the inferred fact is 
 
 To illustrate this expression, a Rule object is provided the following properties
 
-| Property | Description |
-| -------- | ------- |
-| string Name { get; set; } | The name of the rule |
+| Property                            | Description                                                                                  |
+|-------------------------------------|----------------------------------------------------------------------------------------------|
+| string Name { get; set; }           | The name of the rule                                                                         |
 | List\<IFact\> Premises { get; set;} | The list that contains all the facts to satisfy in order to deduce a new fact from this rule |
-| IFact Conclusion { get; set; } | The conclusion to assert if every of the premises are satisfied |
+| IFact Conclusion { get; set; }      | The conclusion to assert if every of the premises are satisfied                              |
 
 ## **`RuleFactory`**
 To create new Rules, this static class is provided to the users of the package.
 With this class, there are actually two ways of creating a rule, all of them through easy API.
 
-| Method SSignature | Description |
-| -------- | ------- |
-| Rule MakeRule(Rule rule, string ruleName = "") | This method takes two arguments, a **rule** to copy, and an optional **ruleName** to override the provided one. It returns a copy of the provided rule in a new variable |
-| `Rule` MakeRule(string ruleName, `IFact` conclusion, `params` `IFact`[] premises) | That method takes basically three arguments or more. The two firstones are respectively the **ruleName** we want to apply to the rule, and the **conclusion** we want to deduce if premises are satisfied. Also, the remaining **params** are an array of `IFacts` that will represents the premisses of the rules. They can be passed to the method each separated by commas.|
+| Method SSignature                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                    |
+|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Rule MakeRule(Rule rule, string ruleName = "")                                    | This method takes two arguments, a **rule** to copy, and an optional **ruleName** to override the provided one. It returns a copy of the provided rule in a new variable                                                                                                                                                                                                       |
+| `Rule` MakeRule(string ruleName, `IFact` conclusion, `params` `IFact`[] premises) | That method takes basically three arguments or more. The two firstones are respectively the **ruleName** we want to apply to the rule, and the **conclusion** we want to deduce if premises are satisfied. Also, the remaining **params** are an array of `IFacts` that will represents the premisses of the rules. They can be passed to the method each separated by commas. |
 
 ## Example
 We will continue the code written for the previous example
@@ -113,12 +113,12 @@ In order to store the known Facts and Rules, we provide some repositories classe
 
 The concrete implementations get several constructors to ensure that the usage is easy
 
-| Method | Description |
-| ------ | ------ |
-| void Clear() | That remove all known statement. |
-| void AddData(T newData) | `T` represents here either a Rule or a Fact. This method adds the new instance to the appropriate repository |
+| Method                                        | Description                                                                                                                                 |
+|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| void Clear()                                  | That remove all known statement.                                                                                                            |
+| void AddData(T newData)                       | `T` represents here either a Rule or a Fact. This method adds the new instance to the appropriate repository                                |
 | void AddRangeDatas(IEnumerable\<T\> newDatas) | Same to thr previous one, `T` represents a Rule or a Fact. This method adds a range of items of the same type in the appropriate repository |
-| T SearchData(string dataName) | This method retrieves an instance of data with the provided name in the appropriat repository |
+| T SearchData(string dataName)                 | This method retrieves an instance of data with the provided name in the appropriat repository                                               |
 
 ## **`Engine`**
 Finally, the core part of this package, is the Engine class that Enables to solve a certain collection of rules, given a collection of facts. 
@@ -135,11 +135,11 @@ public Engine(FactsBase factsBase, RulesBase rulesBase)
 }
 ```
 
-| Method | Description |
-|---- | ---- |
+| Method                      | Description                                                                            |
+|-----------------------------|----------------------------------------------------------------------------------------|
 | IEnumerable<IFact> Solve(); | Solves the problem by inferring every new fact possible, and returns the list of facts |
-| List<Fact> GetFacts(); | Gets the existing facts |
-| string PrintFacts(); | Prints the current facts to the console |
+| List<Fact> GetFacts();      | Gets the existing facts                                                                |
+| string PrintFacts();        | Prints the current facts to the console                                                |
 
 ## Example
 
